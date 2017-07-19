@@ -1,3 +1,4 @@
+# require 'joke'
 
 class User
   attr_reader :name, :jokes, :count
@@ -11,6 +12,10 @@ class User
   def learn(joke)
     jokes << joke
     @jokes = Joke.new
+  end
+
+  def tell(user, joke)
+
   end
 
 end

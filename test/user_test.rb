@@ -2,7 +2,7 @@ require 'minitest'
 require 'minitest/autorun'
 require 'minitest/pride'
 require './lib/user'
-# require './lib/joke'
+require './lib/joke'
 
 class UserTest < Minitest::Test
   def test_it_exists
@@ -31,15 +31,19 @@ class UserTest < Minitest::Test
 
   def test_user_can_add_joke_to_arsenal
     sal = User.new("Sal")
+    joke = Joke.new
     sal.learn(joke)
     sal.jokes
 
-    assert_equal Joke sal.jokes
+    assert_equal joke, sal.jokes
   end
 
   def test_user_can_tell_jokes
+    skip
     sal = User.new("Sal")
     ali = User.new("Ali")
+    joke = Joke.new(joke = {id:nil, question:nil, answer:nil})
+
 
     assert_equal Joke, sal.tell(ali, joke)
   end
