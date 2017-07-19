@@ -15,7 +15,7 @@ class User
   end
 
   def tell(user, joke)
-
+    user.each do |
   end
 
 end
