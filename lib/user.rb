@@ -1,3 +1,6 @@
+require 'csv'
+
+
 class User
   attr_reader :name, :jokes
 
@@ -17,6 +20,12 @@ class User
   def perform_routine_for(user)
     jokes.each do |joke|
       tell(user, joke)
+    end
+  end
+
+  def learn_routine(jokes_file)
+    CSV.foreach(jokes_file, headers: true) do |row|
+      jokes << row.to_hash
     end
   end
 

@@ -60,9 +60,15 @@ class UserTest < Minitest::Test
 
     ilana.perform_routine_for(josh)
 
-    assert_instance_of Joke, josh.jokes[0]
-    assert_instance_of Joke, josh.jokes[1]
-    assert_equal 2, josh.jokes.count
+    assert_equal [joke_1, joke_2], josh.jokes
+  end
+
+  def test_learns_lots_of_jokes
+    casey = User.new("Casey")
+
+    casey.learn_routine('./jokes.csv')
+
+    assert_equal 100, casey.jokes.count
   end
 
 end
