@@ -1,21 +1,17 @@
-# require 'joke'
-
 class User
-  attr_reader :name, :jokes, :count
+  attr_reader :name, :jokes
 
   def initialize(name)
     @name  = name
     @jokes = []
-    @count = 0
   end
 
   def learn(joke)
-    jokes << joke
-    @jokes = Joke.new
+    @jokes << joke
   end
 
   def tell(user, joke)
-    user.each do |
+    user.jokes << joke
   end
 
 end
