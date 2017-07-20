@@ -32,11 +32,11 @@ class UserTest < Minitest::Test
 
   def test_user_can_learn_jokes
     sam = User.new("Sam")
-    joke = Joke.new(({id: 1, question: "Why did the strawberry cross the road?", answer: "Because his mother was in a jam."}))
+    joke = Joke.new({id: 1, question: "Why did the strawberry cross the road?", answer: "Because his mother was in a jam."})
 
     sam.learn(joke)
 
-    assert_equal [jokes], sam.jokes
+    assert_equal [joke], sam.jokes
   end
 
   def test_user_can_tell_jokes
@@ -48,6 +48,21 @@ class UserTest < Minitest::Test
     sal.tell(ali, joke)
 
     assert_equal 1, ali.jokes.count
+  end
+
+  def test_perform_routine_for
+    joke_1 = Joke.new({id: 1, question: "Why did the strawberry cross the road?", answer: "Because his mother was in a jam."})
+    joke_2 = Joke.new({id: 2, question: "How do you keep a lion from charging?", answer: "Take away its credit cards."})
+    ilana = User.new("Ilana")
+    josh = User.new("Josh")
+    ilana.learn(joke_1)
+    ilana.learn(joke_2)
+
+    ilana.perform_routine_for(josh)
+
+    assert_instance_of Joke, josh.jokes[0]
+    assert_instance_of Joke, josh.jokes[1]
+    assert_equal 2, josh.jokes.count
   end
 
 end
